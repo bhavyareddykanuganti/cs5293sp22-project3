@@ -4,7 +4,6 @@ import os
 import pdb
 import re
 import sys
-import numpy as np
 import pandas as pd
 
 import nltk
@@ -15,7 +14,7 @@ from nltk import ne_chunk
 from nltk import ngrams
 from nltk.corpus import stopwords
 nltk.download('stopwords')
-
+nltk.download('punkt')
 import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction import DictVectorizer
@@ -54,8 +53,6 @@ def get_entity(text):
         length=len(names[0])
     else:
         length=0
-
-
     score=TextBlob(text).sentiment.polarity
     features={'Name_length': length,'stop_words':len(fil),'sentiment score':score}
     #print(features)
