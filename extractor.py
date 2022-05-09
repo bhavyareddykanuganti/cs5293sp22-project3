@@ -20,10 +20,10 @@ import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import precision_score,recall_score,f1_score,accuracy_score
+from sklearn.naive_bayes import GaussianNB
+
 
 from textblob import TextBlob
 
@@ -192,18 +192,24 @@ if __name__ == '__main__':
     # Usage: python3 entity-extractor.py 'train/pos/*.txt'
     y_train,x_train=doextraction(sys.argv[-1])
     y_validation,x_validation=doextraction_validation(sys.argv[-1])
-    print(y_validation)
+    #print(y_validation)
     y_test, x_test = doextraction_test(sys.argv[-1])
     vec = DictVectorizer()
-
     vec_features = vec.fit_transform(x_train).toarray()
-    model = LogisticRegression(max_iter=10000)
+    #model=LogisticRegression()
+    model= GaussianNB()
     model.fit(vec_features, y_train)
-    #vec_features_validation=vec.fit_transform(x_validation)
-
-    vec_features_test = vec.fit_transform(x_test)
-    output=model.predict(vec_features_test)
-    print("Precision", precision_score(y_test, output, average='macro'))
-    print("Recall", recall_score(y_test, output, average='macro'))
-    print("f1 score", f1_score(y_test, output, average='macro'))
-    print("Accuracy score", accuracy_score(y_test, output))
+    vec_features_validation=vec.fit_transform(x_validation).toarray()
+    vec_features_test = vec.fit_transform(x_test).toarray()
+    output=model.predict(vec_features_validation)
+    print("validation",output)
+    print("Validation Precision", precision_score(y_validation, output, average='macro'))
+    print("Validation Recall", recall_score(y_validation, output, average='macro'))
+    print("Validation f1 score", f1_score(y_validation, output, average='macro'))
+    print("Validation Accuracy score", accuracy_score(y_validation, output))
+    output1=model.predict(vec_features_test)
+    print("test",output1)
+    print("test Precision", precision_score(y_test, output1, average='macro'))
+    print("test Recall", recall_score(y_test, output1, average='macro'))
+    print("test f1 score", f1_score(y_test, output1, average='macro'))
+    print("Test Accuracy score", accuracy_score(y_validation, output))
