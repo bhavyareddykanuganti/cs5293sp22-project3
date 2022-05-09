@@ -88,7 +88,7 @@ After performing  vec_features_validation=vec.fit_transform(x_validation) and
 vec_features_test = vec.fit_transform(x_test) we need to predict the output for validation data
 using output=model.predict(vec_features_validation) and testing data using output1=model.predict(vec_features_test).
 The precision, recall and f1-score is calculated for validation data and testing data.
-The redacted names and the scores are given as output.
+The redacted names and also the precision, recall and f1 score are given as output.
 
 ## Assumptions and Bugs
 

@@ -8,6 +8,8 @@ nltk = "*"
 numpy = "*"
 sklearn = "*"
 pandas = "*"
+requests = "*"
+textblob = "*"
 
 [dev-packages]
 
