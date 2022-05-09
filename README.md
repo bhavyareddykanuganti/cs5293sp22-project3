@@ -89,12 +89,17 @@ vec_features_test = vec.fit_transform(x_test) we need to predict the output for 
 using output=model.predict(vec_features_validation) and testing data using output1=model.predict(vec_features_test).
 The precision, recall and f1-score is calculated for validation data and testing data.
 The redacted names and also the precision, recall and f1 score are given as output.
+### Logic to get latest tsv file
+To get the latest tsv file we may use the url if the file and then decode it and create a dataframe, and perform the above mentioned functions
 
 ## Assumptions and Bugs
 
 Only the given regex pattern can be found. 
+
 If more features were given it was taking longer to run the code, so reduced the features and eventually
 the precision, recall, and f1 score are reduced.
+
+In the unredactor.tsv file there were errors after line 4286, so I trained till that line  
 
 
 ## Execution
